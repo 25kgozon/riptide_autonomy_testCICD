@@ -2,7 +2,7 @@ name: ROS2 CI/CD
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, test-cicd ]
   pull_request:
     branches: [ main, develop ]
 
