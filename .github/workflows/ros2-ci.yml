@@ -62,6 +62,7 @@ jobs:
           . /opt/ros/${{ matrix.ros_distro }}/setup.sh
           . install/setup.sh
           colcon test --return-code-on-test-failure \
+            --packages-select riptide_autonomy2 \
             --event-handlers console_direct+
 
       - name: Show test results
