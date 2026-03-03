@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          path: src/riptide_autonomy2
+          path: src/riptide_autonomy
           submodules: recursive
 
       - name: Install system dependencies
@@ -41,7 +41,7 @@ jobs:
 
       - name: Fetch custom dependencies
         run: |
-          vcs import src < src/riptide_autonomy2/dependencies.repos
+          vcs import src < src/riptide_autonomy/dependencies.repos
 
       - name: Install ROS dependencies
         run: |
