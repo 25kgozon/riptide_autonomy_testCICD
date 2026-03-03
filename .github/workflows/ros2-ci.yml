@@ -21,6 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          path: src/riptide_autonomy2
           submodules: recursive
 
       - name: Install system dependencies
@@ -40,12 +41,11 @@ jobs:
 
       - name: Fetch custom dependencies
         run: |
-          mkdir -p src
-          vcs import src < dependencies.repos
+          vcs import src < src/riptide_autonomy2/dependencies.repos
 
       - name: Install ROS dependencies
         run: |
-          rosdep install --from-paths . --ignore-src -r -y
+          rosdep install --from-paths src --ignore-src -r -y
 
       - name: Source ROS workspace
         run: |
@@ -55,8 +55,7 @@ jobs:
         run: |
           . /opt/ros/${{ matrix.ros_distro }}/setup.sh
           colcon build --cmake-force-configure \
-            --event-handlers console_direct+ \
-            --base-paths .
+            --event-handlers console_direct+
 
       - name: Run tests
         run: |
