@@ -55,6 +55,7 @@ jobs:
         run: |
           . /opt/ros/${{ matrix.ros_distro }}/setup.sh
           colcon build --cmake-force-configure \
+            --packages-up-to riptide_autonomy2 riptide_mapping2 \
             --event-handlers console_direct+
 
       - name: Run tests
@@ -62,7 +63,7 @@ jobs:
           . /opt/ros/${{ matrix.ros_distro }}/setup.sh
           . install/setup.sh
           colcon test --return-code-on-test-failure \
-            --packages-select riptide_autonomy2 \
+            --packages-select riptide_autonomy2 riptide_mapping2 \
             --event-handlers console_direct+
 
       - name: Show test results
